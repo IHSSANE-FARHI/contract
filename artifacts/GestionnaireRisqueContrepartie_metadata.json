@@ -1,0 +1,691 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "typeAlerte",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "valeur",
+						"type": "uint256"
+					}
+				],
+				"name": "AlerteRisqueEleve",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "limiteExposition",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "collateral",
+						"type": "uint256"
+					}
+				],
+				"name": "ContrepartieAjoutee",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "expediteur",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "recepteur",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "montant",
+						"type": "uint256"
+					}
+				],
+				"name": "FondsEnvoyes",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "expositionCourante",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "limiteExposition",
+						"type": "uint256"
+					}
+				],
+				"name": "LimiteDepassee",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "nouvelleGarantie",
+						"type": "uint256"
+					}
+				],
+				"name": "MiseAJourGarantie",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "expediteur",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "recepteur",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "valeur",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "horodatage",
+						"type": "uint256"
+					}
+				],
+				"name": "NouvelleOperation",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "montantPenalite",
+						"type": "uint256"
+					}
+				],
+				"name": "PenaliteAppliquee",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "montant",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "typePosition",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "collateralExige",
+						"type": "uint256"
+					}
+				],
+				"name": "PositionAjoutee",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "ratioCouverture",
+						"type": "uint256"
+					}
+				],
+				"name": "RatioCouvertureInsuffisant",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_nouvelleGarantie",
+						"type": "uint256"
+					}
+				],
+				"name": "actualiserGarantie",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_montant",
+						"type": "uint256"
+					}
+				],
+				"name": "ajouterCollateral",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_scoreCredit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_limiteExposition",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_collateral",
+						"type": "uint256"
+					}
+				],
+				"name": "ajouterContrepartie",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_montant",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_typePosition",
+						"type": "string"
+					}
+				],
+				"name": "ajouterPosition",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					}
+				],
+				"name": "calculerExpositionNette",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					}
+				],
+				"name": "calculerRatioCouverture",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					}
+				],
+				"name": "calculerRatioGarantie",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_portefeuille",
+						"type": "address"
+					}
+				],
+				"name": "calculerRisque",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "contreparties",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "portefeuille",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "scoreCredit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limiteExposition",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expositionCourante",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "collateral",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "estActif",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "penalites",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "garantie",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_recepteur",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_valeur",
+						"type": "int256"
+					}
+				],
+				"name": "enregistrerTransaction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_recepteur",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_montant",
+						"type": "uint256"
+					}
+				],
+				"name": "envoyerFonds",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getListeContreparties",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "historiqueTransactions",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "expediteur",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "recepteur",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "valeur",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "horodatage",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listeContreparties",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nouveauRatio",
+						"type": "uint256"
+					}
+				],
+				"name": "modifierRatioDeCouverture",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "obtenirHistoriqueTransactions",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "expediteur",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "recepteur",
+								"type": "address"
+							},
+							{
+								"internalType": "int256",
+								"name": "valeur",
+								"type": "int256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "horodatage",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct GestionnaireRisqueContrepartie.EnregistrementTransaction[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ratioDeCouverture",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "relationsExposition",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"gest.ris2.sol": "GestionnaireRisqueContrepartie"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"gest.ris2.sol": {
+			"keccak256": "0x00de09caffee4b62157f95433956b9f0784abc3eb8ffb86d3aab793cae14a512",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5fe210274762548b6d743ba3e9795721e98122a57f744875df2b48afe2234dec",
+				"dweb:/ipfs/QmNkyj7nGaEEfJR11uqPjNT93Bd3WR2Q9CS5gJ2Fy4rWn9"
+			]
+		}
+	},
+	"version": 1
+}

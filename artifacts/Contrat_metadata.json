@@ -1,0 +1,83 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_message",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "message",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_nouveauMessage",
+						"type": "string"
+					}
+				],
+				"name": "mettreAJourMessage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"smartcontrat1.sol": "Contrat"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"smartcontrat1.sol": {
+			"keccak256": "0x87c568407e8e5167e93ac1aa2d029b32e6fca7a8f3de086dea92cb627189db51",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://467c6ad783693a064be6d978c06c7709cab93b754bef87d8642b731b5f12dc8a",
+				"dweb:/ipfs/QmNTZ7dPEjrCcwhi5tmRwM1VSyCshLsBCyakuLAPxRdsXH"
+			]
+		}
+	},
+	"version": 1
+}
